@@ -1,9 +1,17 @@
 import { Toaster } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { Form, Input, Button, Layout } from "antd";
+
+const { Header, Content, Footer } = Layout;
 
 function App() {
+  const onFinish = (values: any) => {
+    console.log(values);
+  };
+
   return (
     <>
+      {/* NAVBAR */}
       <nav className="bg-blue-600 text-white shadow">
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <Link to="#" className="text-xl font-semibold">
@@ -34,8 +42,61 @@ function App() {
       </nav>
 
       {/* MAIN CONTENT */}
-      <div className="max-w-6xl mx-auto mt-10 px-4 text-center">
-        <h1 className="text-4xl font-bold mb-4">Chào mừng đến với WEB2091</h1>
+      <div className="max-w-6xl mx-auto mt-10 px-4">
+        <h1 className="text-4xl font-bold mb-6 text-center">
+          Chào mừng đến với WEB2091
+        </h1>
+
+        {/* BUTTON DEMO */}
+        <div className="flex justify-center gap-3 mb-8">
+          <Button type="primary">Primary</Button>
+          <Button>Default</Button>
+          <Button type="dashed">Dashed</Button>
+          <Button type="link">Link</Button>
+          <Button type="text">Text</Button>
+        </div>
+
+        {/* LAYOUT */}
+        <Layout>
+          <Header style={{ color: "white", fontSize: 18 }}>
+            Header
+          </Header>
+
+          <Content style={{ padding: 20 }}>
+            <div style={{ maxWidth: 400 }}>
+              <Form layout="vertical" onFinish={onFinish}>
+                <Form.Item
+                  label="Username"
+                  name="username"
+                  rules={[
+                    { required: true, message: "Vui lòng nhập username!" },
+                  ]}
+                >
+                  <Input placeholder="Nhập username" />
+                </Form.Item>
+
+                <Form.Item
+                  label="Password"
+                  name="password"
+                  rules={[
+                    { required: true, message: "Vui lòng nhập password!" },
+                  ]}
+                >
+                  <Input.Password placeholder="Nhập password" />
+                </Form.Item>
+                <Form.Item>
+                  <Button htmlType="submit" type="primary">
+                    Submit
+                  </Button>
+                </Form.Item>
+              </Form>
+            </div>
+          </Content>
+
+          <Footer style={{ textAlign: "center" }}>
+            WEB2091 ©2026 Created by Student
+          </Footer>
+        </Layout>
       </div>
 
       <Toaster />
